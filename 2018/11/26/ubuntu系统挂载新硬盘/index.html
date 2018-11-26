@@ -79,16 +79,17 @@
 
 
 
-<meta name="description" content="我不会告诉你这里有什么的">
-<meta property="og:type" content="website">
-<meta property="og:title" content="一个神奇的博客">
-<meta property="og:url" content="https://sun361504834.github.io/myBlog.github.io/index.html">
+<meta name="description" content="主要参考了网上两篇文章 1、http://blog.csdn.net/zqixiao_09/article/details/51417432 2、http://blog.csdn.net/qq_29729577/article/details/52057629 分区采用了第二篇文章的，ext4，采用uuid方式编辑/etc/fstab  1、查看硬盘信息 #fdisk -l 2、格式化分区： #m">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ubuntu系统挂载新硬盘">
+<meta property="og:url" content="https://sun361504834.github.io/myBlog.github.io/2018/11/26/ubuntu系统挂载新硬盘/index.html">
 <meta property="og:site_name" content="一个神奇的博客">
-<meta property="og:description" content="我不会告诉你这里有什么的">
+<meta property="og:description" content="主要参考了网上两篇文章 1、http://blog.csdn.net/zqixiao_09/article/details/51417432 2、http://blog.csdn.net/qq_29729577/article/details/52057629 分区采用了第二篇文章的，ext4，采用uuid方式编辑/etc/fstab  1、查看硬盘信息 #fdisk -l 2、格式化分区： #m">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-11-26T10:55:50.927Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一个神奇的博客">
-<meta name="twitter:description" content="我不会告诉你这里有什么的">
+<meta name="twitter:title" content="ubuntu系统挂载新硬盘">
+<meta name="twitter:description" content="主要参考了网上两篇文章 1、http://blog.csdn.net/zqixiao_09/article/details/51417432 2、http://blog.csdn.net/qq_29729577/article/details/52057629 分区采用了第二篇文章的，ext4，采用uuid方式编辑/etc/fstab  1、查看硬盘信息 #fdisk -l 2、格式化分区： #m">
 
 
 
@@ -118,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://sun361504834.github.io/myBlog.github.io/">
+  <link rel="canonical" href="https://sun361504834.github.io/myBlog.github.io/2018/11/26/ubuntu系统挂载新硬盘/">
 
 
 
 
 
-  <title>一个神奇的博客</title>
+  <title>ubuntu系统挂载新硬盘 | 一个神奇的博客</title>
   
 
 
@@ -143,8 +144,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -227,9 +227,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -242,7 +242,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sun361504834.github.io/myBlog.github.io/myBlog.github.io/2018/11/26/d3力导向图，Zoom后brush画刷选取node节点不正常/">
+    <link itemprop="mainEntityOfPage" href="https://sun361504834.github.io/myBlog.github.io/myBlog.github.io/2018/11/26/ubuntu系统挂载新硬盘/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Oliver Sun">
@@ -259,9 +259,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/myBlog.github.io/2018/11/26/d3力导向图，Zoom后brush画刷选取node节点不正常/" itemprop="url">d3力导向图，Zoom后brush画刷选取node节点不正常</a></h1>
+          <h1 class="post-title" itemprop="name headline">ubuntu系统挂载新硬盘</h1>
         
 
         <div class="post-meta">
@@ -273,7 +271,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-26T19:09:41+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-26T18:55:47+08:00">
                 2018-11-26
               </time>
             
@@ -291,7 +289,7 @@
 
           
           
-             <span id="/myBlog.github.io/2018/11/26/d3力导向图，Zoom后brush画刷选取node节点不正常/" class="leancloud_visitors" data-flag-title="d3力导向图，Zoom后brush画刷选取node节点不正常">
+             <span id="/myBlog.github.io/2018/11/26/ubuntu系统挂载新硬盘/" class="leancloud_visitors" data-flag-title="ubuntu系统挂载新硬盘">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -322,26 +320,23 @@
       
 
       
-        
-          
-          在用brush画刷批量选取力学导图的node节点时，页面初始化时是一切正常的。 但是点击zoom事件放大缩小后，brush画刷选取开始出现明显的不正常，有时候可以选取到，有时候选取不到。
-正常情况：
-
-zoom后：
-
-这是我初始化brush的代码：
-
-这是zoom的代码
-//set zoomfunc
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/myBlog.github.io/2018/11/26/d3力导向图，Zoom后brush画刷选取node节点不正常/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+        <p>主要参考了网上两篇文章</p>
+<p>1、<a href="http://blog.csdn.net/zqixiao_09/article/details/51417432" target="_blank" rel="noopener">http://blog.csdn.net/zqixiao_09/article/details/51417432</a></p>
+<p>2、<a href="http://blog.csdn.net/qq_29729577/article/details/52057629" target="_blank" rel="noopener">http://blog.csdn.net/qq_29729577/article/details/52057629</a></p>
+<p>分区采用了第二篇文章的，ext4，采用uuid方式编辑/etc/fstab </p>
+<p>1、<strong>查看硬盘信息</strong></p>
+<p>#fdisk -l</p>
+<p>2、<strong>格式化分区：</strong></p>
+<p>#mkfs.ext4 /dev/sdb1           //注：将/dev/sdb1格式化为ext4类型</p>
+<p>3、<strong>创建/data1目录：</strong></p>
+<p>#mkdir /data1</p>
+<p>4、<strong>设置开机挂载</strong></p>
+<p>首先查看sdb所对应的UUID</p>
+<p># ls -l /dev/disk/by-uuid/</p>
+<p>我的是d4d51645-d50e-4ab5-a38f-21b17b024807</p>
+<p># vim /etc/fstab </p>
+<p>###自定义额外挂载的400g硬盘 /dev/sdc 到/iflytek目录<br>UUID=d4d51645-d50e-4ab5-a38f-21b17b024807 /data1 ext4 defaults 0 2</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># /etc/fstab: static file system information.</span><br><span class="line">#</span><br><span class="line"># Use &apos;blkid&apos; to print the universally unique identifier for a</span><br><span class="line"># device; this may be used with UUID= as a more robust way to name devices</span><br><span class="line"># that works even if disks are added and removed. See fstab(5).</span><br><span class="line">#</span><br><span class="line"># &lt;file system&gt; &lt;mount point&gt;   &lt;type&gt;  &lt;options&gt;       &lt;dump&gt;  &lt;pass&gt;</span><br><span class="line"># / was on /dev/sda1 during installation</span><br><span class="line">UUID=603e545c-77b3-4f2e-aa06-58361e1b43e5 /               ext4    errors=remount-ro 0       1</span><br><span class="line"># /home was on /dev/sda6 during installation</span><br><span class="line">UUID=25bb41a3-0d63-4c5a-81ff-564a44e53006 /home           ext4    defaults        0       2</span><br><span class="line"># /var was on /dev/sda2 during installation</span><br><span class="line">UUID=2a8b44eb-8e16-4226-897f-5f89bc567dcd /var            ext4    defaults        0       2</span><br><span class="line"># swap was on /dev/sda5 during installation</span><br><span class="line">UUID=7b75db6c-057d-4063-b0e8-1116a97e3ef8 none            swap    sw              0       0</span><br><span class="line"># /home/iflytek/data was on /dev/sdb1 during config...</span><br><span class="line">UUID=704a3761-7f0e-4c34-9d37-fabd4150a488 /home/iflytek/data ext4 defaults 0 2</span><br><span class="line">#自定义额外挂载的400g硬盘 /dev/sdc 到/iflytek目录</span><br><span class="line">UUID=d4d51645-d50e-4ab5-a38f-21b17b024807 /data1 ext4 defaults 0 2</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -358,294 +353,47 @@ zoom后：
       
 
       
-
       
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sun361504834.github.io/myBlog.github.io/myBlog.github.io/2018/11/26/SVG学习笔记/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Oliver Sun">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/myBlog.github.io/images/admin.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一个神奇的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/myBlog.github.io/2018/11/26/SVG学习笔记/" itemprop="url">SVG学习笔记</a></h1>
+        <div class="post-widgets">
         
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-26T19:08:27+08:00">
-                2018-11-26
-              </time>
-            
+        
 
-            
-
-            
-          </span>
-
+        
           
-
-          
-            
-          
-
-          
-          
-             <span id="/myBlog.github.io/2018/11/26/SVG学习笔记/" class="leancloud_visitors" data-flag-title="SVG学习笔记">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
       
       
 
       
-        
-          
-          学习svg主要参考了w3c的教程： http://www.w3school.com.cn/svg/index.asp
-什么是SVG？
-SVG 指可伸缩矢量图形 (Scalable Vector Graphics)
-SVG 用来定义用于网络的基于矢量的图形
-SVG 使用 XML 格式定义图形
-SVG 
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/myBlog.github.io/2018/11/26/SVG学习笔记/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/myBlog.github.io/2018/11/26/ETL数据抽取转换工具DataX使用记录/" rel="next" title="ETL数据抽取转换工具DataX使用记录">
+                <i class="fa fa-chevron-left"></i> ETL数据抽取转换工具DataX使用记录
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sun361504834.github.io/myBlog.github.io/myBlog.github.io/2018/11/26/WARNING-Max-1024-open-files-allowed-minimum-of-40000-recommended-See-the-Neo4j-manua/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Oliver Sun">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/myBlog.github.io/images/admin.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一个神奇的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/myBlog.github.io/2018/11/26/WARNING-Max-1024-open-files-allowed-minimum-of-40000-recommended-See-the-Neo4j-manua/" itemprop="url">WARNING: Max 1024 open files allowed, minimum of 40000 recommended. See the Neo4j manua</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-26T19:07:47+08:00">
-                2018-11-26
-              </time>
+              <a href="/myBlog.github.io/2018/11/26/linux查看raid信息/" rel="prev" title="linux不关机查看raid信息">
+                linux不关机查看raid信息 <i class="fa fa-chevron-right"></i>
+              </a>
             
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/myBlog.github.io/2018/11/26/WARNING-Max-1024-open-files-allowed-minimum-of-40000-recommended-See-the-Neo4j-manua/" class="leancloud_visitors" data-flag-title="WARNING: Max 1024 open files allowed, minimum of 40000 recommended. See the Neo4j manua">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-          When you restart your service you’ll notice this warning:
-WARNING: Max 1024 open files allowed, minimum of 40 000 recommended. See the Neo4j manual.
-
-
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/myBlog.github.io/2018/11/26/WARNING-Max-1024-open-files-allowed-minimum-of-40000-recommended-See-the-Neo4j-manua/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -655,298 +403,27 @@ WARNING: Max 1024 open files allowed, minimum of 40 000 recommended. See the Neo
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sun361504834.github.io/myBlog.github.io/myBlog.github.io/2018/11/26/neo4j批量数据导入/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Oliver Sun">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/myBlog.github.io/images/admin.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一个神奇的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/myBlog.github.io/2018/11/26/neo4j批量数据导入/" itemprop="url">neo4j批量数据导入</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-26T19:06:30+08:00">
-                2018-11-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/myBlog.github.io/2018/11/26/neo4j批量数据导入/" class="leancloud_visitors" data-flag-title="neo4j批量数据导入">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          首先把我的参考资料列出来：
-官方load 指南： https://neo4j.com/developer/guide-import-csv/
-load csv官方手册：https://neo4j.com/docs/developer-manual/3.2-alpha/cypher/clauses/l
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/myBlog.github.io/2018/11/26/neo4j批量数据导入/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
 
 
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sun361504834.github.io/myBlog.github.io/myBlog.github.io/2018/11/26/Linux-软件安装到-usr，-usr-local-还是-opt-目录？/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Oliver Sun">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/myBlog.github.io/images/admin.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一个神奇的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/myBlog.github.io/2018/11/26/Linux-软件安装到-usr，-usr-local-还是-opt-目录？/" itemprop="url"> Linux 软件安装到 /usr，/usr/local/ 还是 /opt 目录？</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-26T19:04:35+08:00">
-                2018-11-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/myBlog.github.io/2018/11/26/Linux-软件安装到-usr，-usr-local-还是-opt-目录？/" class="leancloud_visitors" data-flag-title=" Linux 软件安装到 /usr，/usr/local/ 还是 /opt 目录？">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Linux 的软件安装目录是也是有讲究的，理解这一点，在对系统管理是有益的
-/usr：系统级的目录，可以理解为C:/Windows/，/usr/lib理解为C:/Windows/System32。/usr/local：用户级的程序目录，可以理解为C:/Progrem Files/。用户自己编译的软件
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/myBlog.github.io/2018/11/26/Linux-软件安装到-usr，-usr-local-还是-opt-目录？/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
           </div>
-          <!--/noindex-->
-        
-      
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MTIwMS8xNzc0OQ=="></div>
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
 
   
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/myBlog.github.io/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/myBlog.github.io/page/4/">4</a><a class="extend next" rel="next" href="/myBlog.github.io/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
 
 
-
-          </div>
-          
-
-
-          
 
         </div>
         
@@ -1198,6 +675,10 @@ load csv官方手册：https://neo4j.com/docs/developer-manual/3.2-alpha/cypher/
 
 
   
+  <script type="text/javascript" src="/myBlog.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/myBlog.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -1226,6 +707,17 @@ load csv官方手册：https://neo4j.com/docs/developer-manual/3.2-alpha/cypher/
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 

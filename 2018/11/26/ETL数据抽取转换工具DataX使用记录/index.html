@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/myBlog.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/myBlog.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/myBlog.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/myBlog.github.io/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/myBlog.github.io/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/myBlog.github.io/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/myBlog.github.io/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="DataX是一个在异构的[数据库](http://lib.csdn.net/base/mysql)/文件系统之间高速交换数据的工具，实现了在任意的数据处理系统(RDBMS/Hdfs/Local filesystem）之间的数据交换 datax产品说明http://code.taobao.org/p/datax/wiki/DataX%E4%BA%A7%E5%93%81%E8%AF%B4%E6%98%">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ETL数据抽取转换工具DataX使用记录">
+<meta property="og:url" content="https://sun361504834.github.io/myBlog.github.io/2018/11/26/ETL数据抽取转换工具DataX使用记录/index.html">
+<meta property="og:site_name" content="一个神奇的博客">
+<meta property="og:description" content="DataX是一个在异构的[数据库](http://lib.csdn.net/base/mysql)/文件系统之间高速交换数据的工具，实现了在任意的数据处理系统(RDBMS/Hdfs/Local filesystem）之间的数据交换 datax产品说明http://code.taobao.org/p/datax/wiki/DataX%E4%BA%A7%E5%93%81%E8%AF%B4%E6%98%">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-11-26T10:54:22.767Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ETL数据抽取转换工具DataX使用记录">
+<meta name="twitter:description" content="DataX是一个在异构的[数据库](http://lib.csdn.net/base/mysql)/文件系统之间高速交换数据的工具，实现了在任意的数据处理系统(RDBMS/Hdfs/Local filesystem）之间的数据交换 datax产品说明http://code.taobao.org/p/datax/wiki/DataX%E4%BA%A7%E5%93%81%E8%AF%B4%E6%98%">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/myBlog.github.io/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://sun361504834.github.io/myBlog.github.io/2018/11/26/ETL数据抽取转换工具DataX使用记录/">
+
+
+
+
+
+  <title>ETL数据抽取转换工具DataX使用记录 | 一个神奇的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/myBlog.github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">一个神奇的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/myBlog.github.io/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/myBlog.github.io/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/myBlog.github.io/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sun361504834.github.io/myBlog.github.io/myBlog.github.io/2018/11/26/ETL数据抽取转换工具DataX使用记录/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Oliver Sun">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/myBlog.github.io/images/admin.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一个神奇的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ETL数据抽取转换工具DataX使用记录</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-26T18:52:52+08:00">
+                2018-11-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/myBlog.github.io/2018/11/26/ETL数据抽取转换工具DataX使用记录/" class="leancloud_visitors" data-flag-title="ETL数据抽取转换工具DataX使用记录">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <pre><code>DataX是一个在异构的[数据库](http://lib.csdn.net/base/mysql)/文件系统之间高速交换数据的工具，实现了在任意的数据处理系统(RDBMS/Hdfs/Local filesystem）之间的数据交换
+</code></pre><h1 id="datax产品说明"><a href="#datax产品说明" class="headerlink" title="datax产品说明"></a>datax产品说明</h1><p><a href="http://code.taobao.org/p/datax/wiki/DataX%E4%BA%A7%E5%93%81%E8%AF%B4%E6%98%8E/" target="_blank" rel="noopener">http://code.taobao.org/p/datax/wiki/DataX%E4%BA%A7%E5%93%81%E8%AF%B4%E6%98%8E/</a></p>
+<h1 id="从oracle读取数据打印到控制台"><a href="#从oracle读取数据打印到控制台" class="headerlink" title="从oracle读取数据打印到控制台"></a>从oracle读取数据打印到控制台</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//启动脚本</span><br><span class="line"></span><br><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">source ~/.bashrc</span><br><span class="line"></span><br><span class="line">python /home/hadoop/ceshi/datax/bin/datax.py /home/hadoop/test/jobJson/test2.json</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">//任务json</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    &quot;job&quot;: &#123;</span><br><span class="line">        &quot;setting&quot;: &#123;</span><br><span class="line">            &quot;speed&quot;: &#123;</span><br><span class="line">                &quot;channel&quot;: 5</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;content&quot;: [</span><br><span class="line">            &#123;</span><br><span class="line">                &quot;reader&quot;: &#123;</span><br><span class="line">                    &quot;name&quot;: &quot;oraclereader&quot;,</span><br><span class="line">                    &quot;parameter&quot;: &#123;</span><br><span class="line">                        &quot;username&quot;: &quot;****&quot;,</span><br><span class="line">                        &quot;password&quot;: &quot;****&quot;,</span><br><span class="line">                        &quot;where&quot;: &quot;&quot;,</span><br><span class="line">                        &quot;connection&quot;: [</span><br><span class="line">                            &#123;</span><br><span class="line">                                &quot;querySql&quot;: [</span><br><span class="line">                                    &quot;select callingtel,calledtel from trecord where calledtel &lt;= 100 group by callingtel,calledtel&quot;</span><br><span class="line">                                ],</span><br><span class="line">                                &quot;jdbcUrl&quot;: [</span><br><span class="line">                                    &quot;jdbc:oracle:thin:@192.168.140.30:1521:TEST&quot;</span><br><span class="line">                                ]</span><br><span class="line">                            &#125;</span><br><span class="line">                        ]</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;,</span><br><span class="line">                &quot;writer&quot;: &#123;</span><br><span class="line">                    &quot;name&quot;: &quot;streamwriter&quot;,</span><br><span class="line">                    &quot;parameter&quot;: &#123;</span><br><span class="line">                        &quot;visible&quot;: true,</span><br><span class="line">                        &quot;encoding&quot;: &quot;UTF-8&quot;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="从oracle导出数据到csv文件（用于neo4j数据导入）"><a href="#从oracle导出数据到csv文件（用于neo4j数据导入）" class="headerlink" title="从oracle导出数据到csv文件（用于neo4j数据导入）"></a>从oracle导出数据到csv文件（用于neo4j数据导入）</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">//任务json;  启动命令与以上类似 【需要注意channel的不同？】</span><br><span class="line">&#123;</span><br><span class="line">	&quot;job&quot;: &#123;</span><br><span class="line">		&quot;content&quot;: [</span><br><span class="line">		&#123;</span><br><span class="line">			&quot;reader&quot;: &#123;</span><br><span class="line">				&quot;name&quot;: &quot;oraclereader&quot;,</span><br><span class="line">					&quot;parameter&quot;: &#123;</span><br><span class="line">						&quot;connection&quot;: [</span><br><span class="line">						&#123;</span><br><span class="line">							&quot;querySql&quot;: [</span><br><span class="line">								&quot;SELECT CALLINGTEL AS START_ID, (CASE DATATYPE WHEN 0 THEN &apos;voice&apos;WHEN 3 THEN &apos;sms&apos;ELSE &apos;&apos;END ) calltype, (BEGINTIME - TO_DATE (&apos;1970-01-01&apos;, &apos;yyyy-mm-dd&apos;) ) * 24 * 60 * 60 * 1000 AS BeginTime, ((BEGINTIME - TO_DATE (&apos;1970-01-01&apos;, &apos;yyyy-mm-dd&apos;) ) * 24 * 60 * 60 * 1000 ) + (SPAN * 1000) AS EndTime, SPAN AS Span, CALLEDTEL AS END_ID, (CASE DATATYPE WHEN 0 THEN &apos;voice&apos;WHEN 3 THEN &apos;sms&apos;ELSE &apos;&apos;END ) TYPE FROM TRECORD WHERE CALLINGTEL != CALLEDTEL AND CALLINGTEL IS NOT NULL AND CALLEDTEL IS NOT NULL&quot;</span><br><span class="line">],</span><br><span class="line">							&quot;jdbcUrl&quot;: [</span><br><span class="line">								&quot;jdbc:oracle:thin:@10.1.140.30:1521:TEST&quot;</span><br><span class="line">								]</span><br><span class="line">						&#125;</span><br><span class="line">						],</span><br><span class="line">							&quot;password&quot;: &quot;test&quot;,</span><br><span class="line">							&quot;username&quot;: &quot;test&quot;</span><br><span class="line">					&#125;</span><br><span class="line">			&#125;,</span><br><span class="line">				&quot;writer&quot;: &#123;</span><br><span class="line">					&quot;name&quot;: &quot;txtfilewriter&quot;,</span><br><span class="line">					&quot;parameter&quot;: &#123;</span><br><span class="line">						&quot;path&quot;: &quot;/home/hadoop/test/data/&quot;,</span><br><span class="line">						&quot;fileName&quot;: &quot;rel&quot;,</span><br><span class="line">						&quot;fileType&quot;: &quot;csv&quot;,</span><br><span class="line">						&quot;fieldDelimiter&quot;: &quot;,&quot;,</span><br><span class="line">						&quot;writeMode&quot;: &quot;append&quot;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		],	</span><br><span class="line">			&quot;setting&quot;: &#123;</span><br><span class="line">				&quot;speed&quot;: &#123;</span><br><span class="line">					&quot;channel&quot;: &quot;10&quot;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="fz用oracle导出数据到hdfs"><a href="#fz用oracle导出数据到hdfs" class="headerlink" title="fz用oracle导出数据到hdfs"></a>fz用oracle导出数据到hdfs</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">//querySql模式，parameter-column可以不用指定</span><br><span class="line">&#123;</span><br><span class="line">    &quot;job&quot;: &#123;</span><br><span class="line">        &quot;content&quot;: [</span><br><span class="line">            &#123;</span><br><span class="line">                &quot;reader&quot;: &#123;</span><br><span class="line">                    &quot;name&quot;: &quot;oraclereader&quot;,</span><br><span class="line">                    &quot;parameter&quot;: &#123;</span><br><span class="line">                        &quot;connection&quot;: [</span><br><span class="line">                            &#123;</span><br><span class="line">                               &quot;querySql&quot;: [</span><br><span class="line">                                    &quot;select callingtel,calledtel from trecord where to_char(rectime,&apos;yyyy-mm-dd&apos;)=to_char(sysdate - 1,&apos;yyyy-mm-dd&apos;) group by callingtel,calledtel&quot;</span><br><span class="line">                                ],</span><br><span class="line">                                &quot;jdbcUrl&quot;: [</span><br><span class="line">                                    &quot;jdbc:oracle:thin:@192.168.140.30:1521:TEST&quot;</span><br><span class="line">                                ]</span><br><span class="line">                            &#125;</span><br><span class="line">                        ],</span><br><span class="line">                         &quot;password&quot;: &quot;****&quot;,</span><br><span class="line">                         &quot;username&quot;: &quot;****&quot;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;,</span><br><span class="line">                &quot;writer&quot;: &#123;</span><br><span class="line">                    &quot;name&quot;: &quot;hdfswriter&quot;,</span><br><span class="line">                    &quot;parameter&quot;: &#123;</span><br><span class="line">                        &quot;column&quot;: [</span><br><span class="line">                            &#123;</span><br><span class="line">                                &quot;name&quot;: &quot;callingtel&quot;,</span><br><span class="line">                                &quot;type&quot;: &quot;INT&quot;</span><br><span class="line">                            &#125;,</span><br><span class="line">                            &#123;</span><br><span class="line">                                &quot;name&quot;: &quot;calledtel&quot;,</span><br><span class="line">                                &quot;type&quot;: &quot;INT&quot;</span><br><span class="line">                            &#125;</span><br><span class="line">                        ],</span><br><span class="line">                        &quot;compress&quot;: &quot;&quot;,</span><br><span class="line">                        &quot;defaultFS&quot;: &quot;hdfs://192.168.140.11:9000&quot;,</span><br><span class="line">                        &quot;fieldDelimiter&quot;: &quot; &quot;,</span><br><span class="line">                        &quot;fileName&quot;: &quot;trecord&quot;,</span><br><span class="line">                        &quot;fileType&quot;: &quot;text&quot;,</span><br><span class="line">                        &quot;path&quot;: &quot;/user/test/data/&quot;,</span><br><span class="line">                        &quot;writeMode&quot;: &quot;append&quot;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        ],</span><br><span class="line">        &quot;setting&quot;: &#123;</span><br><span class="line">            &quot;speed&quot;: &#123;</span><br><span class="line">                &quot;channel&quot;: &quot;2&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/myBlog.github.io/2018/11/26/ubuntu-server设置开启程序自启动/" rel="next" title="ubuntu server设置开启程序自启动">
+                <i class="fa fa-chevron-left"></i> ubuntu server设置开启程序自启动
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/myBlog.github.io/2018/11/26/ubuntu系统挂载新硬盘/" rel="prev" title="ubuntu系统挂载新硬盘">
+                ubuntu系统挂载新硬盘 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MTIwMS8xNzc0OQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/myBlog.github.io/images/admin.jpg" alt="Oliver Sun">
+            
+              <p class="site-author-name" itemprop="name">Oliver Sun</p>
+              <p class="site-description motion-element" itemprop="description">我不会告诉你这里有什么的</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/myBlog.github.io/archives/">
+              
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/myBlog.github.io/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/myBlog.github.io/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/sun361504834" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:touchsun@foxmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.douban.com/people/187519760/" target="_blank" title="豆瓣">
+                      
+                        <i class="fa fa-fw fa-globe"></i>豆瓣</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/sun-you-ling-70/" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-globe"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#datax产品说明"><span class="nav-number">1.</span> <span class="nav-text">datax产品说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#从oracle读取数据打印到控制台"><span class="nav-number">2.</span> <span class="nav-text">从oracle读取数据打印到控制台</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#从oracle导出数据到csv文件（用于neo4j数据导入）"><span class="nav-number">3.</span> <span class="nav-text">从oracle导出数据到csv文件（用于neo4j数据导入）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#fz用oracle导出数据到hdfs"><span class="nav-number">4.</span> <span class="nav-text">fz用oracle导出数据到hdfs</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-snowflake-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Oliver Sun</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/myBlog.github.io/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/myBlog.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/myBlog.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/myBlog.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/myBlog.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/myBlog.github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/myBlog.github.io/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/myBlog.github.io/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/myBlog.github.io/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/myBlog.github.io/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/myBlog.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/myBlog.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/myBlog.github.io/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("", "");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/myBlog.github.io/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/myBlog.github.io/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

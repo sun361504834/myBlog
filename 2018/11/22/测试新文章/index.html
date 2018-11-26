@@ -79,19 +79,20 @@
 
 
 
-<meta name="description" content="前提不再赘述：   1、有github账户   2、安装node js   3、本地安装了git （安装后进行config –global初始配置，包括创建上传ssh key到github账户） 正式开始： 1、先进入本地与github关联的仓库目录下，我的是 /f/git_repository/，新建 myBlog目录 打开git bash命令工具 cd /f/git_repository/my">
+<meta name="description" content="前提不再赘述： 1、有github账户 2、安装node js 3、本地安装了git （安装后进行config –global初始配置，包括创建上传ssh key到github账户） 正式开始： 1、先进入本地与github关联的仓库目录下，我的是 /f/git_repository/，新建 myBlog目录 打开git bash命令工具 cd /f/git_repository/myBlog 2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用github+hexo搭建自己的个人博客">
 <meta property="og:url" content="https://sun361504834.github.io/myBlog.github.io/2018/11/22/测试新文章/index.html">
 <meta property="og:site_name" content="一个神奇的博客">
-<meta property="og:description" content="前提不再赘述：   1、有github账户   2、安装node js   3、本地安装了git （安装后进行config –global初始配置，包括创建上传ssh key到github账户） 正式开始： 1、先进入本地与github关联的仓库目录下，我的是 /f/git_repository/，新建 myBlog目录 打开git bash命令工具 cd /f/git_repository/my">
+<meta property="og:description" content="前提不再赘述： 1、有github账户 2、安装node js 3、本地安装了git （安装后进行config –global初始配置，包括创建上传ssh key到github账户） 正式开始： 1、先进入本地与github关联的仓库目录下，我的是 /f/git_repository/，新建 myBlog目录 打开git bash命令工具 cd /f/git_repository/myBlog 2">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://oscimg.oschina.net/oscnet/b1ee72c73d19382f61d8292c9028d2e797f.jpg">
 <meta property="og:image" content="https://oscimg.oschina.net/oscnet/2eb487596d6483c410fa8578c966d24f6c5.jpg">
-<meta property="og:updated_time" content="2018-11-22T10:59:14.580Z">
+<meta property="og:image" content="https://oscimg.oschina.net/oscnet/0b8e80ed78c71b929368f4a7da5110747bd.jpg">
+<meta property="og:updated_time" content="2018-11-26T09:24:43.468Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用github+hexo搭建自己的个人博客">
-<meta name="twitter:description" content="前提不再赘述：   1、有github账户   2、安装node js   3、本地安装了git （安装后进行config –global初始配置，包括创建上传ssh key到github账户） 正式开始： 1、先进入本地与github关联的仓库目录下，我的是 /f/git_repository/，新建 myBlog目录 打开git bash命令工具 cd /f/git_repository/my">
+<meta name="twitter:description" content="前提不再赘述： 1、有github账户 2、安装node js 3、本地安装了git （安装后进行config –global初始配置，包括创建上传ssh key到github账户） 正式开始： 1、先进入本地与github关联的仓库目录下，我的是 /f/git_repository/，新建 myBlog目录 打开git bash命令工具 cd /f/git_repository/myBlog 2">
 <meta name="twitter:image" content="https://oscimg.oschina.net/oscnet/b1ee72c73d19382f61d8292c9028d2e797f.jpg">
 
 
@@ -324,33 +325,38 @@
 
       
         <p><strong>前提不再赘述：</strong></p>
-<p>  1、有github账户</p>
-<p>  2、安装node js</p>
-<p>  3、本地安装了git （安装后进行config –global初始配置，包括创建上传ssh key到github账户）</p>
+<p>1、有github账户</p>
+<p>2、安装node js</p>
+<p>3、本地安装了git （安装后进行config –global初始配置，包括创建上传ssh key到github账户）</p>
 <p><strong>正式开始：</strong></p>
 <p>1、先进入本地与github关联的仓库目录下，我的是 /f/git_repository/，新建 myBlog目录</p>
 <p>打开git bash命令工具 cd /f/git_repository/myBlog</p>
-<p>2、初始化<br>    $ hexo init</p>
-<p>3、生成静态页面<br>初始化完成之后，就已经生成一篇“hello word”的文章了，现在执行以下命令把文章编译为静态页面：<br>    $ hexo generate</p>
-<p>4、本地启动<br>把文章变为页面之后，可以执行以下命令，本地启动服务，在浏览器中输入<a href="http://localhost:4000/查看生成的页面效果" target="_blank" rel="noopener">http://localhost:4000/查看生成的页面效果</a><br>    hexo server</p>
-<p>这时开始出现了问题执行命令hexo server，提示：Usage: hexo …. 提示找不到该server指令<br>解决方法，在Hexo 3.0 后server被单独出来了，需要安装server，安装此server后再试，问题解决。安装的命令如下（我用git bash执行报错了，切换到win cmd执行成功）：<br>    npm install hexo-server –save </p>
+<p>2、初始化 $ hexo init</p>
+<p>3、生成静态页面 初始化完成之后，就已经生成一篇“hello word”的文章了，现在执行以下命令把文章编译为静态页面： $ hexo generate</p>
+<p>4、本地启动 把文章变为页面之后，可以执行以下命令，本地启动服务，在浏览器中输入<a href="http://localhost:4000/查看生成的页面效果" target="_blank" rel="noopener">http://localhost:4000/查看生成的页面效果</a> hexo server</p>
+<p>这时开始出现了问题执行命令hexo server，提示：Usage: hexo …. 提示找不到该server指令 解决方法，在Hexo 3.0 后server被单独出来了，需要安装server，安装此server后再试，问题解决。安装的命令如下（我用git bash执行报错了，切换到win cmd执行成功）： npm install hexo-server –save</p>
 <p>4、重新编译启动，执行：hexo server，启动了服务，在浏览器输入本地地址访问，看到白板和Cannot GET / 几个字</p>
-<pre><code>在Hexo博客中，出现Cannot GET/xxx错误便意味着xxx文件未被找到。Cannot GET/xxx错误本质是hexo server返回的一个404错误。
-开始查找原因    网上说是由于2.6以后就更新了，我们需要手动配置些东西，我们需要输入下面三行命令：
-npm install hexo-renderer-ejs--save
-
-npm install hexo-renderer-stylus--save
-
-npm install hexo-renderer-marked--save
-</code></pre><p>  三条命令执行完这时候重新启动本地服务再访问还是不行</p>
-<p>  因此，继续排查方式如下：</p>
-<p> 1.判断public目录下xxx文件是否存在。<br> （我的错误是 Cannot GET /，因此在public目录下寻找index.html是否存在。）</p>
-<p> 2.如果说index.html不存在，那么执行hexo c，hexo g重新生成一次，回到步骤1。</p>
-<p> 3.步骤2执行完后index.html仍不存在，执行npm audit fix，查看是否少了什么组件，通过npm install hexo-xxx-xxx 安装即可。<br>    $ npm audit fix</p>
-<p><img src="https://oscimg.oschina.net/oscnet/b1ee72c73d19382f61d8292c9028d2e797f.jpg" alt=""><br> （我的hexo缺少了hexo-generator-archive等组件，因此执行npm install hexo-generator-archive …即可）。<br>    npm install hexo-generator-archive</p>
-<p> 4.步骤3完成之后，执行hexo clean，hexo g重新生成静态文件。<br>5、再次启动<br>    hexo server<br>访问<a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a> 终于成功，显示的是一个默认界面<br><img src="https://oscimg.oschina.net/oscnet/2eb487596d6483c410fa8578c966d24f6c5.jpg" alt=""></p>
-<p>自定义美化<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">admin@zhensun2 MINGW64 /f/git_repository/myBlog</span><br><span class="line">$ git clone https://github.com/iissnan/hexo-theme-next.git themes/next</span><br><span class="line">Cloning into &apos;themes/next&apos;...</span><br><span class="line">remote: Enumerating objects: 12033, done.</span><br><span class="line">remote: Total 12033 (delta 0), reused 0 (delta 0), pack-reused 12033</span><br><span class="line">Receiving objects: 100% (12033/12033), 12.95 MiB | 547.00 KiB/s, done.</span><br><span class="line">Resolving deltas: 100% (6966/6966), done.</span><br></pre></td></tr></table></figure></p>
-
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">在Hexo博客中，出现Cannot GET/xxx错误便意味着xxx文件未被找到。Cannot GET/xxx错误本质是hexo server返回的一个404错误。</span><br><span class="line">开始查找原因    网上说是由于2.6以后就更新了，我们需要手动配置些东西，我们需要输入下面三行命令：</span><br><span class="line">npm install hexo-renderer-ejs--save</span><br><span class="line"></span><br><span class="line">npm install hexo-renderer-stylus--save</span><br><span class="line"></span><br><span class="line">npm install hexo-renderer-marked--save</span><br></pre></td></tr></table></figure>
+<p>三条命令执行完这时候重新启动本地服务再访问还是不行</p>
+<p>因此，继续排查方式如下：</p>
+<p>1.判断public目录下xxx文件是否存在。 （我的错误是 Cannot GET /，因此在public目录下寻找index.html是否存在。）</p>
+<p>2.如果说index.html不存在，那么执行hexo c，hexo g重新生成一次，回到步骤1。</p>
+<p>3.步骤2执行完后index.html仍不存在，执行npm audit fix，查看是否少了什么组件，通过npm install hexo-xxx-xxx 安装即可。 $ npm audit fix</p>
+<p><img src="https://oscimg.oschina.net/oscnet/b1ee72c73d19382f61d8292c9028d2e797f.jpg" alt=""> （我的hexo缺少了hexo-generator-archive等组件，因此执行npm install hexo-generator-archive …即可）。 npm install hexo-generator-archive</p>
+<p>4.步骤3完成之后，执行hexo clean，hexo g重新生成静态文件。 5、再次启动 hexo server 访问<a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a> 终于成功，显示的是一个默认界面 <img src="https://oscimg.oschina.net/oscnet/2eb487596d6483c410fa8578c966d24f6c5.jpg" alt=""></p>
+<p>自定义美化 1、切换主题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">admin@zhensun2 MINGW64 /f/git_repository/myBlog</span><br><span class="line">$ git clone https://github.com/iissnan/hexo-theme-next.git themes/next</span><br><span class="line">Cloning into &apos;themes/next&apos;...</span><br><span class="line">remote: Enumerating objects: 12033, done.</span><br><span class="line">remote: Total 12033 (delta 0), reused 0 (delta 0), pack-reused 12033</span><br><span class="line">Receiving objects: 100% (12033/12033), 12.95 MiB | 547.00 KiB/s, done.</span><br><span class="line">Resolving deltas: 100% (6966/6966), done.</span><br></pre></td></tr></table></figure>
+<p>2、切换主题后进行一些自定义美化设置</p>
+<p>3、利用hexo-admin工具进行管理、发布文章等</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --save hexo-admin</span><br></pre></td></tr></table></figure>
+<p><img src="https://oscimg.oschina.net/oscnet/0b8e80ed78c71b929368f4a7da5110747bd.jpg" alt=""></p>
+<p><strong>最终部署</strong></p>
+<p> 部署到github前需要修改根目录_config.yml，不然会出现访问github pages网页只有文字没有样式的情况</p>
+<pre><code>具体可以参考这个文章 [hexo + github pages搭建博客样式加载不出来](https://blog.csdn.net/banjw_129/article/details/82261165)
+</code></pre><p><strong>添加评论组件</strong></p>
+<p>评论组件选用了韩国的来比力，详情参考了这篇文章：</p>
+<pre><code>[Hexo-NexT主题添加评论功能（来必力、Hypercomments、畅言、友言）](https://blog.csdn.net/qq_32454537/article/details/79482879)
+</code></pre>
       
     </div>
     
@@ -398,6 +404,10 @@ npm install hexo-renderer-marked--save
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/myBlog.github.io/2018/11/26/linux部署JDK8/" rel="prev" title="linux部署JDK8">
+                linux部署JDK8 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -472,7 +482,7 @@ npm install hexo-renderer-marked--save
               
                 <a href="/myBlog.github.io/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
